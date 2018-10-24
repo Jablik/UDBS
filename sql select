@@ -39,7 +39,9 @@ select st.station_name, * from (select x.city, x.id from (select c.city_name as 
 	join test.city c on c.city_id = s.city_id
 	where s.source_type = 'Prumysl'
 	group by c.city_name, c.city_id) x
-	where x.pocet_prum >3 intersect (select y.city, y.id from (select c.city_name as city, c.city_id as id, count(*) as pocet_lok from test.source s
+	where x.pocet_prum >3
+	intersect
+		(select y.city, y.id from (select c.city_name as city, c.city_id as id, count(*) as pocet_lok from test.source s
 		join test.city c on c.city_id = s.city_id
 		where s.source_type = 'Lokální topenište'
 		group by c.city_name, c.city_id) y
